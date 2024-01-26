@@ -1,3 +1,16 @@
+// Injecting the UI variables
+:root {
+	--plus-jakarta-sans-font: #{$plus-jakarta-sans-font};
+	--primary-color: #{$primary-color};
+	--secondary-color: #{secondary-color};
+	--bg-color: #{bg-color};
+	--bg-label: #{bg-label};
+	--bg-heart-icon-active: #{bg-heart-icon-active};
+	--bg-heart-icon-default: #{bg-heart-icon};
+	--bg-heart-icon-border: #{bg-heart-icon-border};
+}
+
+// Applying the Plus Jakarta Sans font
 * {
 	font-family: $plus-jakarta-sans-font;
 }
