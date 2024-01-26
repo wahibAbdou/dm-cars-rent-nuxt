@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/global.scss'],
-  modules: ['@nuxtjs/google-fonts'],
+  modules: ['@nuxtjs/google-fonts', '@nuxtjs/tailwindcss'],
   googleFonts: {
     families: {
       'Plus+Jakarta+Sans': true,
