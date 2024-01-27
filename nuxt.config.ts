@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/google-fonts', '@nuxtjs/tailwindcss'],
   googleFonts: {
     families: {
-      'Plus+Jakarta+Sans': true,
+      'Plus+Jakarta+Sans': [400, 500, 600, 700, 800],
     },
     display: 'block'
   },

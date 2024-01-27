@@ -3,6 +3,8 @@
 <template>
 	<div>
 		<UtilsHeader />
+		<br /><br />
+		<UtilsFooter />
 	</div>
 </template>
 

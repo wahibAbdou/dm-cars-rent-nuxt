@@ -19,8 +19,4 @@
 	</svg>
 </template>
 
-<style lang="scss" scoped>
-svg {
-	@apply lg:ml-12;
-}
-</style>
+<style scoped></style>

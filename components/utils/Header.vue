@@ -3,7 +3,7 @@
 <template>
 	<div class="bg-white">
 		<div class="dm-header">
-			<UtilsLogo />
+			<UtilsLogo class="lg:ml-12" />
 			<div class="last">
 				<UtilsSearchInput class="hidden lg:block" />
 				<UtilsFavoriteItems />
@@ -26,6 +26,7 @@
 }
 
 .search-mobile {
-	@apply dm-container pb-56 lg:hidden;
+	@apply dm-container pb-56;
+	@apply lg:hidden;
 }
 </style>
