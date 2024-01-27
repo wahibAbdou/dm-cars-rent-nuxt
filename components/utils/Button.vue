@@ -16,7 +16,8 @@ withDefaults(defineProps<ButtonProps>(), {
 
 <style lang="scss" scoped>
 button {
-	@apply text-white px-4 py-3 rounded;
+	@apply text-white py-3.5 px-8 rounded;
+	@apply lg:px-6 lg:py-2.5;
 }
 
 .btn-primary {

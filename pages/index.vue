@@ -3,7 +3,7 @@
 <template>
 	<div>
 		<UtilsHeader />
-		<br /><br />
+		<SectionsHero />
 		<UtilsFooter />
 	</div>
 </template>

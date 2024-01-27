@@ -26,7 +26,7 @@
 }
 
 .search-mobile {
-	@apply dm-container pb-56;
+	@apply dm-container pb-40;
 	@apply lg:hidden;
 }
 </style>
