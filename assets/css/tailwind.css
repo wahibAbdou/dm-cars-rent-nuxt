@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	.dm-container {
+		@apply container mx-auto px-7 lg:px-0;
+	}
+
+	.dm-center {
+		@apply absolute top-1/2 left-1/2;
+		transform: translate(-50%, -50%);
+	}
+
+	.dm-center-y {
+		@apply absolute top-1/2;
+		transform: translateY(-50%);
+	}
+}
