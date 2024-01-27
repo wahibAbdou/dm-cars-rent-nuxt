@@ -4,6 +4,7 @@
 	<div>
 		<UtilsHeader />
 		<SectionsHero />
+		<SectionsPopularCars />
 		<UtilsFooter />
 	</div>
 </template>

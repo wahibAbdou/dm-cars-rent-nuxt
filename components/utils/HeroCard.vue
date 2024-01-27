@@ -17,8 +17,8 @@ const props = withDefaults(defineProps<HeroCardProps>(), {
 });
 
 const cardClasses = computed<
-	'md-hero-card card-primary' | 'md-hero-card card-light'
->(() => `md-hero-card card-${props.mode}`);
+	'dm-hero-card card-primary' | 'dm-hero-card card-light'
+>(() => `dm-hero-card card-${props.mode}`);
 
 const btnClasses = computed<'btn-primary' | 'btn-light'>(
 	() => `btn-${props.mode === 'primary' ? 'light' : 'primary'}`
@@ -41,7 +41,7 @@ const imgSource = computed(() =>
 </template>
 
 <style lang="scss" scoped>
-.md-hero-card {
+.dm-hero-card {
 	@apply flex-1 bg-cover rounded-lg overflow-hidden text-white p-4;
 	@apply lg:px-6 lg:pt-8 lg:pb-2;
 	@apply lg:bg-cover;
