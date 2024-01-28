@@ -17,13 +17,10 @@ export default {
       fontFamily: {
         'plus-jakarta-sans': ['var(--plus-jakarta-sans-font)'],
       },
-      backgroundColor: {
-        'feather-gradient': 'background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)'
-      },
       backgroundImage: {
         'hero-card-primary': 'url(~/assets/images/card-image-primary.png)',
         'hero-card-light': 'url(~/assets/images/card-image-light.png)',
-        'hero-card-light-mobile': 'url(~/assets/images/card-image-light-mobile.png)',
+        'hero-card-light-mobile': 'url(~/assets/images/card-image-light-mobile.png)'
       }
     },
   },

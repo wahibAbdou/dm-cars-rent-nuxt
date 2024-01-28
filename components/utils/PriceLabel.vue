@@ -19,11 +19,11 @@ const props = withDefaults(defineProps<PriceLabel>(), {
 	@apply flex items-end gap-1;
 
 	h4 {
-		@apply text-secondary-color text-xl font-bold;
+		@apply text-secondary-color text-base font-bold;
 	}
 
 	span {
-		@apply text-label-color font-semibold;
+		@apply text-label-color text-sm font-semibold;
 	}
 }
 </style>

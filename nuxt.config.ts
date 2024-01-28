@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/global.scss'],
-  modules: ['@nuxtjs/google-fonts', '@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/google-fonts', '@nuxtjs/tailwindcss', 'vue3-carousel-nuxt'],
   googleFonts: {
     families: {
       'Plus+Jakarta+Sans': [400, 500, 600, 700, 800],

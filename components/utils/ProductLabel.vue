@@ -18,6 +18,6 @@ const props = withDefaults(defineProps<ProductLabel>(), {
 
 <style lang="scss" scoped>
 .dm-product-label {
-	@apply flex items-center gap-1 text-label-color;
+	@apply flex items-center gap-1 text-label-color text-sm;
 }
 </style>
