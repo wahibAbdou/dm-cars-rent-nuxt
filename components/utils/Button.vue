@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-interface ButtonProps {
-	text?: string;
-	classes?: 'btn-primary' | 'btn-light';
-}
+import type { ButtonProps } from '~/types';
 
 withDefaults(defineProps<ButtonProps>(), {
 	text: 'Default Primary Button',

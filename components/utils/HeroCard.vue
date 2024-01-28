@@ -1,13 +1,8 @@
 <script lang="ts" setup>
+import type { HeroCardProps } from '~/types';
+
 import carPrimary from '~/assets/images/car-image-primary.png';
 import carLight from '~/assets/images/car-image-light.png';
-
-interface HeroCardProps {
-	title?: string;
-	description?: string;
-	ctaTextButton?: string;
-	mode?: 'primary' | 'light';
-}
 
 const props = withDefaults(defineProps<HeroCardProps>(), {
 	title: 'Default Primary Card',

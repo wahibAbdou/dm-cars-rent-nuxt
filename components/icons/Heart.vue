@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-interface HeartFill {
-	fill?: string;
-}
+import type { HeartFill } from '~/types';
+
 const props = withDefaults(defineProps<HeartFill>(), {
 	fill: 'var(--icon-default-color)',
 });

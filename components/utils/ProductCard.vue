@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import type { ProductCard } from '~/types';
+
+const props = defineProps<ProductCard>();
+
 const isFavorite = ref(false);
 
 const favoriteItem = () => {
@@ -10,7 +14,7 @@ const favoriteItem = () => {
 	<div class="dm-product-card">
 		<div class="card-header">
 			<div>
-				<h4>Honda Accord</h4>
+				<h4>{{ name }}</h4>
 				<IconsHeart
 					@click.native="favoriteItem"
 					:fill="
@@ -20,32 +24,29 @@ const favoriteItem = () => {
 					"
 				/>
 			</div>
-			<span>Sedan</span>
+			<span>{{ type }}</span>
 		</div>
 		<div class="card-body">
 			<div class="card-cover">
-				<img
-					src="https://dm-assignment-commonshare.koyeb.app/img/1.png"
-					alt="Honda Accord"
-				/>
+				<img :src="img" :alt="name" />
 			</div>
 			<div class="card-labels">
-				<UtilsProductLabel text="65L">
+				<UtilsProductLabel :text="gasolineLiter">
 					<IconsGasoline />
 				</UtilsProductLabel>
-				<UtilsProductLabel text="Manual">
+				<UtilsProductLabel :text="kindOfTransition">
 					<IconsCar />
 				</UtilsProductLabel>
-				<UtilsProductLabel text="2 People">
+				<UtilsProductLabel :text="people">
 					<IconsCapacity />
 				</UtilsProductLabel>
 			</div>
 		</div>
 		<div class="card-footer">
-			<UtilsPriceLabel :price="60" />
-			<div>
+			<UtilsPriceLabel :price="pricePerDay" />
+			<NuxtLink :to="`/car/${id}`">
 				<UtilsButton text="Rental Now" />
-			</div>
+			</NuxtLink>
 		</div>
 	</div>
 </template>
@@ -69,10 +70,10 @@ const favoriteItem = () => {
 
 	.card-body {
 		.card-cover {
-			@apply relative h-[66.2px] mb-14;
+			@apply relative w-full mb-14;
 			&:after {
 				content: '';
-				@apply absolute left-0 right-0 h-11 bottom-0 bg-gradient-to-t from-white to-transparent;
+				@apply absolute left-0 right-0 bottom-0 h-11 bg-gradient-to-t from-white to-transparent;
 			}
 
 			img {

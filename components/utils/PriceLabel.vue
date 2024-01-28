@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-interface PriceLabel {
-	price?: number;
-}
+import type { PriceLabel } from '~/types';
+
 const props = withDefaults(defineProps<PriceLabel>(), {
-	price: 0,
+	price: '$00.00',
 });
 </script>
 
 <template>
 	<div class="dm-price-label">
-		<h4>${{ price.toFixed(2) }}/</h4>
+		<h4>{{ price }}/</h4>
 		<span>day</span>
 	</div>
 </template>

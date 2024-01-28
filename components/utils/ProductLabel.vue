@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-interface ProductLabel {
-	text?: string;
-}
+import type { ProductLabel } from '~/types';
+
 const props = withDefaults(defineProps<ProductLabel>(), {
 	text: 'Default Product Label',
 });

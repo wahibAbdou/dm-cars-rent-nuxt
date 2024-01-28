@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+import type { ProductCards } from '~/types';
+
+const props = defineProps<ProductCards>();
+
 const settings = ref({
 	itemsToShow: 1.2,
 	snapAlign: 'start',
 });
 
 const breakpoints = {
-	// 700px and up
 	768: {
 		itemsToShow: 2.5,
 		snapAlign: 'center',
@@ -16,9 +19,32 @@ const breakpoints = {
 <template>
 	<div class="md-mobile-carousel">
 		<Carousel v-bind="settings" :breakpoints="breakpoints">
-			<Slide v-for="slide in 10" :key="slide">
+			<Slide
+				v-for="{
+					id,
+					index,
+					name,
+					type,
+					gasolineLiter,
+					kindOfTransition,
+					people,
+					pricePerDay,
+					img,
+				} in data"
+				:key="id"
+			>
 				<div class="carousel__item">
-					<UtilsProductCard />
+					<UtilsProductCard
+						:index
+						:id
+						:name
+						:type
+						:gasolineLiter
+						:kindOfTransition
+						:people
+						:pricePerDay
+						:img
+					/>
 				</div>
 			</Slide>
 		</Carousel>

@@ -1,20 +1,18 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { ProductCards } from '~/types';
+
+defineProps<ProductCards>();
+</script>
 
 <template>
 	<div class="dm-header-section">
 		<h5>Popular Cars</h5>
 		<NuxtLink to="#">View All</NuxtLink>
 	</div>
-
-	<div class="dm-popular-cars">
-		<div class="cards-stack">
-			<UtilsProductCard />
-			<UtilsProductCard />
-			<UtilsProductCard />
-			<UtilsProductCard />
-		</div>
+	<div class="dm-popular-cars" v-if="Array.isArray(data)">
+		<UtilsCardsStack :data="data" />
+		<UtilsMobileCarousel :data="data" />
 	</div>
-	<UtilsMobileCarousel />
 </template>
 
 <style lang="scss" scoped>
@@ -29,10 +27,5 @@
 		@apply text-primary;
 		@apply hover:underline;
 	}
-}
-
-.cards-stack {
-	@apply hidden;
-	@apply lg:mb-14 lg:dm-container lg:flex lg:gap-6 lg:gap-8;
 }
 </style>
