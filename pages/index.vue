@@ -37,6 +37,7 @@ store.setPopularCars(popularColumns);
 		<UtilsHeader />
 		<SectionsHero />
 		<SectionsPopularCars :data="popularColumns" />
+		<SectionsRecommendedCars />
 		<UtilsFooter />
 	</div>
 </template>

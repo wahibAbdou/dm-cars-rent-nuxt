@@ -36,6 +36,6 @@ defineProps<ProductCards>();
 <style lang="scss" scoped>
 .dm-cards-stack {
 	@apply hidden;
-	@apply lg:mb-14 lg:dm-container lg:flex lg:gap-6 lg:gap-8;
+	@apply lg:dm-container lg:mb-14 lg:flex lg:gap-8;
 }
 </style>
