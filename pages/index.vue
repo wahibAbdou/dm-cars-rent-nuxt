@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { ProductCards, ProductCardsMap } from '~/types';
-
 // Accessing env variables
 const baseAPIUrl = useEnv('BASE_API_URL');
 
@@ -8,36 +6,22 @@ const baseAPIUrl = useEnv('BASE_API_URL');
 const store = useStore();
 
 // Get list of popular cars
-const {
-	data: { value: popularColumns },
-} = await useAsyncData('popularCars', () =>
-	$fetch(`${baseAPIUrl}/cars/popular`).then((response) => {
-		// Formatting response data
-		if (response && Array.isArray(response)) {
-			return response.map<ProductCardsMap>((carDetails, index) => {
-				const { pricePerDay, people, gasolineLiter } = carDetails;
+await useAsyncData('popularCars', async () => await store.fetchPopularCars());
 
-				return {
-					index,
-					...carDetails,
-					pricePerDay: `$${pricePerDay.toFixed(2)}`,
-					people: `${people} People`,
-					gasolineLiter: `${gasolineLiter}L`,
-				};
-			});
-		}
-	})
-);
+// Get list of recommended cars
+await useAsyncData('allCars', async () => await store.fetchRecommendedCars());
 
-store.setPopularCars(popularColumns);
+// Computed
+const popularCars = computed(() => store.getPopularCars);
+const recommendedCars = computed(() => store.getRecommendedCars);
 </script>
 
 <template>
 	<div>
 		<UtilsHeader />
 		<SectionsHero />
-		<SectionsPopularCars :data="popularColumns" />
-		<SectionsRecommendedCars />
+		<SectionsPopularCars :data="popularCars" />
+		<SectionsRecommendedCars :data="recommendedCars" />
 		<UtilsFooter />
 	</div>
 </template>

@@ -17,6 +17,7 @@ const favoriteItem = () => {
 				<h4>{{ name }}</h4>
 				<IconsHeart
 					@click.native="favoriteItem"
+					:class="{ 'w-5': enableSplitView, 'lg:w-auto': enableSplitView }"
 					:fill="
 						isFavorite
 							? 'var(--heart-icon-active-color)'
@@ -26,7 +27,12 @@ const favoriteItem = () => {
 			</div>
 			<span>{{ type }}</span>
 		</div>
-		<div class="card-body">
+		<div
+			:class="{
+				'card-body': true,
+				'split-view': enableSplitView,
+			}"
+		>
 			<div class="card-cover">
 				<img :src="img" :alt="name" />
 			</div>
@@ -91,6 +97,25 @@ const favoriteItem = () => {
 
 		button {
 			@apply py-2.5 px-4 text-sm;
+		}
+	}
+
+	// Enabling the split view mode only before small and medium screen (lg prefix is equal to 1024px based on TailwindCSS)
+	@media (max-width: 1024px) {
+		.split-view {
+			@apply flex justify-between items-center mb-8;
+
+			.card-cover {
+				@apply flex-1 mb-0;
+
+				img {
+					@apply mx-0;
+				}
+			}
+
+			.card-labels {
+				@apply w-1/3 flex-col items-start gap-3 text-xs mb-0;
+			}
 		}
 	}
 }

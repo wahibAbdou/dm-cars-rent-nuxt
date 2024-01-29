@@ -32,6 +32,7 @@ export interface ProductCard {
 	kindOfTransition: string;
 	people: string;
 	pricePerDay: string;
+	enableSplitView?: boolean | false;
 }
 
 export interface ProductCardRef {
@@ -63,4 +64,15 @@ export interface ProductCardsMap {
 
 interface ProductCardsRef {
 	value: ProductCards | never[];
+}
+
+
+export interface MetaData {
+	total: number,
+	last_page: number
+}
+
+export interface Response {
+	data: ProductCardsMap,
+	meta: MetaData
 }

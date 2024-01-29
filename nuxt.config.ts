@@ -1,5 +1,8 @@
 export default defineNuxtConfig({
   vite: {
+    server: {
+      cors: false
+    },
     css: {
       preprocessorOptions: {
         scss: {

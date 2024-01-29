@@ -12,9 +12,4 @@ defineProps<ProductCards>();
 	</div>
 </template>
 
-<style lang="scss" scoped>
-.dm-header-section {
-	@apply dm-container flex justify-between items-center font-medium text-sm pb-6;
-	@apply md:px-4 md:pb-6 md:text-base;
-}
-</style>
+<style lang="scss" scoped></style>

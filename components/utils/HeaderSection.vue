@@ -20,7 +20,9 @@ const props = defineProps<HeaderSection>();
 
 <style lang="scss" scoped>
 .dm-header-section {
-	@apply dm-container font-medium text-sm pb-6;
+	@apply dm-container flex justify-between items-center font-medium text-sm pb-6;
+	@apply md:px-4 md:pb-6 md:text-base;
+
 	h5 {
 		@apply text-label-color;
 	}
