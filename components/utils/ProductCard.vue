@@ -2,12 +2,6 @@
 import type { ProductCard } from '~/types';
 
 const props = defineProps<ProductCard>();
-
-const isFavorite = ref(false);
-
-const favoriteItem = () => {
-	isFavorite.value = !isFavorite.value;
-};
 </script>
 
 <template>
@@ -15,14 +9,9 @@ const favoriteItem = () => {
 		<div class="card-header">
 			<div>
 				<h4>{{ name }}</h4>
-				<IconsHeart
-					@click.native="favoriteItem"
-					:class="{ 'w-5': enableSplitView, 'lg:w-auto': enableSplitView }"
-					:fill="
-						isFavorite
-							? 'var(--heart-icon-active-color)'
-							: 'var(--icon-default-color)'
-					"
+				<UtilsFavoriteProduct
+					:productId="id"
+					:enableSplitView="enableSplitView"
 				/>
 			</div>
 			<span>{{ type }}</span>

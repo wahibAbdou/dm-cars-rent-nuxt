@@ -34,6 +34,7 @@ const heroCardContent = [
 			:description
 			:ctaTextButton
 			:mode
+			:class="{ hidden: mode === 'primary', 'lg:block': mode === 'primary' }"
 		/>
 	</div>
 </template>

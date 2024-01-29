@@ -19,9 +19,10 @@ const btnClasses = computed<'btn-primary' | 'btn-light'>(
 	() => `btn-${props.mode === 'primary' ? 'light' : 'primary'}`
 );
 
-const imgSource = computed(() =>
-	props.mode === 'primary' ? carPrimary : carLight
-);
+const imgSource = computed(() => {
+	if (props.carImage) return props.carImage;
+	else return props.mode === 'primary' ? carPrimary : carLight;
+});
 </script>
 
 <template>
@@ -29,9 +30,17 @@ const imgSource = computed(() =>
 		<div class="content">
 			<h1>{{ title }}</h1>
 			<p>{{ description }}</p>
-			<UtilsButton :text="ctaTextButton" :classes="btnClasses" />
+			<UtilsButton
+				v-if="ctaTextButton"
+				:text="ctaTextButton"
+				:classes="btnClasses"
+			/>
 		</div>
-		<img :src="imgSource" alt="rental cars" />
+		<img
+			:src="imgSource"
+			:class="{ 'lg:ml-36': true, 'lg:mx-auto': props.carImage }"
+			alt="rental cars"
+		/>
 	</div>
 </template>
 
@@ -57,10 +66,9 @@ const imgSource = computed(() =>
 	}
 }
 .card-primary {
-	@apply hidden bg-hero-card-primary;
-	@apply lg:block;
+	@apply bg-hero-card-primary;
 	img {
-		@apply ml-36;
+		@apply mx-auto;
 	}
 }
 

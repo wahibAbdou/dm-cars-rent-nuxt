@@ -7,6 +7,7 @@ export interface HeroCardProps {
 	description?: string;
 	ctaTextButton?: string;
 	mode?: 'primary' | 'light';
+	carImage?: string;
 }
 
 export interface ButtonProps {
@@ -88,6 +89,19 @@ export interface Image {
 	url: string
 }
 
+export interface ProductSliderProps {
+	carImage: string;
+	images: string[];
+}
+
+export interface ProductDetailsProps {
+	details: Car;
+}
+
+export interface FavoriteProductProps {
+	productId: string,
+	enableSplitView?: boolean;
+}
 
 export interface MetaData {
 	total: number,
@@ -96,5 +110,6 @@ export interface MetaData {
 
 export interface Response {
 	data: ProductCardsMap,
-	meta: MetaData
+	meta?: MetaData
 }
+

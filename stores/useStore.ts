@@ -1,8 +1,8 @@
 import type { ProductCards, ProductCardsRef, Car, Response } from "~/types";
 
 export const useStore = defineStore('useStore', () => {
-	// Accessing env variables
-	const baseAPIUrl = useEnv('BASE_API_URL');
+	// State (Favorite Cars)
+	const favoriteCars: Ref<string[]> = ref([]);
 
 	// State (Popular Cars)
 	const popularCars: ProductCardsRef = ref([]);
@@ -14,6 +14,12 @@ export const useStore = defineStore('useStore', () => {
 
 	// State (Car)
 	const car: Ref<Car | undefined> = ref();
+
+
+	// Getters & Setters (Favorite Cars)
+	const getFavoriteCars = computed(() => favoriteCars.value);
+	const setFavoriteCars = (payload: string) => (favoriteCars.value = [...favoriteCars.value, payload]);
+	const removeFavoriteCar = (payload: string) => (favoriteCars.value = favoriteCars.value.filter(Item => Item !== payload));
 
 
 	// Getters & Setters (Popular Cars)
@@ -41,14 +47,10 @@ export const useStore = defineStore('useStore', () => {
 	const fetchPopularCars = async () => {
 
 		try {
-			const data: Response = await $fetch(`${baseAPIUrl}/cars/popular`)
+			const data: Response = await $fetch('/api/reverse-proxy-popular-cars')
 
-			const popularCars: any = useProductsResponseFormatter(data);
-
-			setPopularCars(popularCars);
-			return popularCars;
-
-
+			setPopularCars(data);
+			return data;
 		} catch (err) {
 			console.error(err);
 		}
@@ -66,7 +68,7 @@ export const useStore = defineStore('useStore', () => {
 
 			// const cloneRecommendedCars: any = 
 
-			const recommendedCars: any = [...getRecommendedCars.value, ...data]
+			const recommendedCars: any = page === 1 ? data : [...getRecommendedCars.value, ...data]
 
 			// Update the state
 			setRecommendedCars(recommendedCars)
@@ -78,23 +80,15 @@ export const useStore = defineStore('useStore', () => {
 	}
 
 	// Actions (Recommended Cars)
-	const fetchCar = async (id: string) => {
+	const fetchCar = async (slug: string) => {
 
 		try {
 
-			const data: Car = await $fetch(`${baseAPIUrl}/cars/${id}`)
-
-			const { pricePerDay, people, gasolineLiter } = data;
-			const car: any = {
-				...data,
-				pricePerDay: `$${pricePerDay.toFixed(2)}`,
-				people: `${people} People`,
-				gasolineLiter: `${gasolineLiter}L`,
-			};
+			const data: Car = await $fetch(`/api/reverse-proxy-car?slug=${slug}`)
 
 			// Update the state
-			setCar(car);
-			return car;
+			setCar(data);
+			return data;
 
 		} catch (err) {
 			console.error(err);
@@ -102,10 +96,18 @@ export const useStore = defineStore('useStore', () => {
 	}
 
 	return {
+		// Favorite Cars
+		favoriteCars,
+		getFavoriteCars,
+		setFavoriteCars,
+		removeFavoriteCar,
+
 		// Popular Cars
 		popularCars, getPopularCars, fetchPopularCars,
+
 		// Recommended Cars
 		recommendedCars, getRecommendedCars, getRecommendedCarsLimited, getShowMoreButton, getNextPage, getLastPage, fetchRecommendedCars,
+
 		// Car
 		car,
 		getCar,

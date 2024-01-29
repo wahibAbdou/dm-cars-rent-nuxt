@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-
     const response: Response = await $fetch(`${baseAPIUrl}/cars?page=${page}`)
     const { data, meta } = response;
     return {
