@@ -1,6 +1,6 @@
 import type { ProductCardsMap } from "~/types";
 
-export const useProductResponseFormatter = (data: ProductCardsMap) => {
+export const useProductsResponseFormatter = (data: ProductCardsMap) => {
   if (data && Array.isArray(data)) {
     return data.map<ProductCardsMap>((carDetails, index) => {
       const { pricePerDay, people, gasolineLiter } = carDetails;

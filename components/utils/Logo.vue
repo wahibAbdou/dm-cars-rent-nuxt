@@ -2,6 +2,7 @@
 
 <template>
 	<svg
+		class="logo"
 		width="48"
 		height="24"
 		viewBox="0 0 48 24"

@@ -1,5 +1,5 @@
 import { useEnv } from '~/composables/useEnv'
-import { useProductResponseFormatter } from '~/composables/useProductResponseFormatter'
+import { useProductsResponseFormatter } from '~/composables/useProductsResponseFormatter'
 import { Response } from '~/types'
 
 export default defineEventHandler(async (event) => {
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     const response: Response = await $fetch(`${baseAPIUrl}/cars?page=${page}`)
     const { data, meta } = response;
     return {
-      data: useProductResponseFormatter(data),
+      data: useProductsResponseFormatter(data),
       meta: meta
     }
   } catch (err) {

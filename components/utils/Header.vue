@@ -3,7 +3,9 @@
 <template>
 	<div class="bg-white">
 		<div class="dm-header">
-			<UtilsLogo class="lg:ml-12" />
+			<NuxtLink to="/" class="lg:ml-12">
+				<UtilsLogo />
+			</NuxtLink>
 			<div class="last">
 				<UtilsSearchInput class="hidden lg:block" />
 				<UtilsFavoriteItems />

@@ -62,8 +62,30 @@ export interface ProductCardsMap {
 	): ProductCards;
 }
 
-interface ProductCardsRef {
+export interface ProductCardsRef {
 	value: ProductCards | never[];
+}
+
+export interface RecommendedCars {
+	data: ProductCards;
+	showMoreButton?: boolean;
+}
+
+export interface Car {
+	name: string
+	type: string
+	description: string
+	gasolineLiter: number
+	kindOfTransition: string
+	people: number
+	pricePerDay: number
+	id: string
+	img: string
+	images: Image[]
+}
+
+export interface Image {
+	url: string
 }
 
 

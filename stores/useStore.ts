@@ -1,6 +1,9 @@
-import type { ProductCards, ProductCardsRef, Response } from "~/types";
+import type { ProductCards, ProductCardsRef, Car, Response } from "~/types";
 
 export const useStore = defineStore('useStore', () => {
+	// Accessing env variables
+	const baseAPIUrl = useEnv('BASE_API_URL');
+
 	// State (Popular Cars)
 	const popularCars: ProductCardsRef = ref([]);
 
@@ -9,6 +12,9 @@ export const useStore = defineStore('useStore', () => {
 	const nextPage: Ref<number> = ref(2);
 	const lastPage: Ref<number | undefined> = ref(undefined);
 
+	// State (Car)
+	const car: Ref<Car | undefined> = ref();
+
 
 	// Getters & Setters (Popular Cars)
 	const getPopularCars = computed(() => popularCars.value);
@@ -16,6 +22,7 @@ export const useStore = defineStore('useStore', () => {
 
 	// Getters & Setters (Recommended Cars)
 	const getRecommendedCars = computed(() => recommendedCars.value);
+	const getRecommendedCarsLimited = computed(() => recommendedCars.value.slice(0, 8));
 	const getNextPage: ComputedRef<number> = computed(() => nextPage.value);
 	const getLastPage: ComputedRef<number | undefined> = computed(() => lastPage.value);
 	const getShowMoreButton = computed(() => lastPage.value ? nextPage.value <= lastPage.value : true)
@@ -24,20 +31,23 @@ export const useStore = defineStore('useStore', () => {
 	const setLastPage = (payload: number | undefined) => (lastPage.value = payload);
 	const setRecommendedCars = (payload: ProductCards) => (recommendedCars.value = payload);
 
+	// Getters & Setters (Car)
+	const getCar = computed(() => car.value);
+
+	const setCar = (payload: Car) => (car.value = payload);
+
 
 	// Actions (Recommended Cars)
 	const fetchPopularCars = async () => {
 
 		try {
-			// Accessing env variables
-			const baseAPIUrl = useEnv('BASE_API_URL');
-
 			const data: Response = await $fetch(`${baseAPIUrl}/cars/popular`)
 
-			const popularCars: any = useProductResponseFormatter(data);
+			const popularCars: any = useProductsResponseFormatter(data);
 
-			setPopularCars(popularCars)
+			setPopularCars(popularCars);
 			return popularCars;
+
 
 		} catch (err) {
 			console.error(err);
@@ -54,9 +64,9 @@ export const useStore = defineStore('useStore', () => {
 			if (getNextPage <= getLastPage) setNextPage(getNextPage.value + 1)
 			if (meta) setLastPage(meta.last_page)
 
-			const cloneRecommendedCars: any = getRecommendedCars.value
+			// const cloneRecommendedCars: any = 
 
-			const recommendedCars: any = [...cloneRecommendedCars, ...data]
+			const recommendedCars: any = [...getRecommendedCars.value, ...data]
 
 			// Update the state
 			setRecommendedCars(recommendedCars)
@@ -67,11 +77,39 @@ export const useStore = defineStore('useStore', () => {
 		}
 	}
 
+	// Actions (Recommended Cars)
+	const fetchCar = async (id: string) => {
+
+		try {
+
+			const data: Car = await $fetch(`${baseAPIUrl}/cars/${id}`)
+
+			const { pricePerDay, people, gasolineLiter } = data;
+			const car: any = {
+				...data,
+				pricePerDay: `$${pricePerDay.toFixed(2)}`,
+				people: `${people} People`,
+				gasolineLiter: `${gasolineLiter}L`,
+			};
+
+			// Update the state
+			setCar(car);
+			return car;
+
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
 	return {
 		// Popular Cars
 		popularCars, getPopularCars, fetchPopularCars,
 		// Recommended Cars
-		recommendedCars, getRecommendedCars, getShowMoreButton, getNextPage, getLastPage, fetchRecommendedCars
+		recommendedCars, getRecommendedCars, getRecommendedCarsLimited, getShowMoreButton, getNextPage, getLastPage, fetchRecommendedCars,
+		// Car
+		car,
+		getCar,
+		fetchCar
 	};
 
 });

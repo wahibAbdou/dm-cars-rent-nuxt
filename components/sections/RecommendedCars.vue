@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import type { ProductCards } from '~/types';
+import type { RecommendedCars } from '~/types';
 
-defineProps<ProductCards>();
+withDefaults(defineProps<RecommendedCars>(), {
+	showMoreButton: true,
+});
 
 const store = useStore();
 
@@ -41,7 +43,8 @@ const fetchNextPage = (page: number) => {
 			/>
 		</div>
 		<UtilsButton
-			v-if="store.getShowMoreButton"
+			v-if="showMoreButton"
+			v-show="store.getShowMoreButton"
 			@click.native="fetchNextPage(store.getNextPage)"
 			text="Show More Cars"
 		/>
